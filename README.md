@@ -8,12 +8,16 @@ Up until now, the techniques used in the solutions range from a simple mutex to
 conditionals and semaphores. Those problems are used in a discipline lectured in
 Universidade de Brasília.
 
+In each problem, a more advanced topic is introduced, so expect on the table of
+the next section to see only the topic that was introduced, but it probably
+includes the older concepts as well.
+
 # List of problems
 
-| Problem | Folder Name |
-|---------|-------------|
-| Writers and Readers | 2 - Escritores e Leitores |
-| Monkey Problem | 3 - Problema dos Macacos |
-| Producers and Consumers | 4 - Problema dos Produtores e Consumidores |
-| The Canibals | 5 - Problemas dos Canibais|
+| Technique | Problem | Folder Name |
+| --------- | ------- | ----------- |
+| Mutexes | Writers and Readers | 2 - Escritores e Leitores |
+| Priority Mutexes | Monkey Problem | 3 - Problema dos Macacos |
+| Conditions | Producers and Consumers | 4 - Problema dos Produtores e Consumidores |
+| Conditions | The Canibals | 5 - Problemas dos Canibais|
 
