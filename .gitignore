@@ -1,0 +1,12 @@
+#
+# Executables and libraries
+#
+*.exe
+*.dll
+*.so
+*.out
+
+#
+# Undersired folders or files
+#
+*Locks
