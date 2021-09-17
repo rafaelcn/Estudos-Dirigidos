@@ -18,6 +18,6 @@ includes the older concepts as well.
 | --------- | ------- | ----------- |
 | Mutexes | Writers and Readers | 2 - Escritores e Leitores |
 | Priority Mutexes | Monkey Problem | 3 - Problema dos Macacos |
-| Conditions | Producers and Consumers | 4 - Problema dos Produtores e Consumidores |
-| Conditions | The Canibals | 5 - Problemas dos Canibais|
+| Condition Variables | Producers and Consumers | 4 - Problema dos Produtores e Consumidores |
+| Conditions Variables | The Canibals | 5 - Problemas dos Canibais|
 
