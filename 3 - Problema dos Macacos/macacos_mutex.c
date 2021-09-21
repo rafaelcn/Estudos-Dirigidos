@@ -42,15 +42,14 @@ void* macacoAB(void * a) {
     int i = *((int *) a);
     while (1) {
         pthread_mutex_lock(&lock_priority);
+            // Procedimentos para acessar a corda
+            pthread_mutex_lock(&lock_count_ab);
+                count_ab++;
+                if (count_ab == 1) {
+                    pthread_mutex_lock(&lock_rope);
+                }
+            pthread_mutex_unlock(&lock_count_ab);
         pthread_mutex_unlock(&lock_priority);
-
-        // Procedimentos para acessar a corda
-        pthread_mutex_lock(&lock_count_ab);
-            count_ab++;
-            if (count_ab == 1) {
-                pthread_mutex_lock(&lock_rope);
-            }
-        pthread_mutex_unlock(&lock_count_ab);
 
         printf("Macaco %d passando de A para B \n", i);
         sleep(1);
@@ -70,15 +69,14 @@ void* macacoBA(void * a) {
     int i = *((int *) a);
     while (1) {
         pthread_mutex_lock(&lock_priority);
+            // Procedimentos para acessar a corda
+            pthread_mutex_lock(&lock_count_ba);
+                count_ba++;
+                if (count_ba == 1) {
+                    pthread_mutex_lock(&lock_rope);
+                }
+            pthread_mutex_unlock(&lock_count_ba);
         pthread_mutex_unlock(&lock_priority);
-
-        // Procedimentos para acessar a corda
-        pthread_mutex_lock(&lock_count_ba);
-            count_ba++;
-            if (count_ba == 1) {
-                pthread_mutex_lock(&lock_rope);
-            }
-        pthread_mutex_unlock(&lock_count_ba);
 
         printf("Macaco %d passando de B para A \n", i);
         sleep(1);
@@ -100,9 +98,8 @@ void* gorila(void * a) {
     // quando o contador for um múltiplo de 5, para que o gorila não monopolize
     // o recurso corda.
     while (1) {
-        if (count_gorilla % 5 == 0) {
-            sleep(rand() % 5);
-        }
+        sleep(rand() % 5);
+
         // Se um ator obtiver lock sobre a preferência, ele tem também acesso ao
         // recurso corda, de modo exclusivo.
         pthread_mutex_lock(&lock_priority);
@@ -111,16 +108,10 @@ void* gorila(void * a) {
             // corda se o contador é maior que 5, onde será zerado e o gorila
             // realizará a travessia. Nesse sentido, é dada uma prioridade muito
             // maior aos macacos do que ao gorila.
-            count_gorilla++;
-            // Procedimentos para acessar a corda
-            if (count_gorilla > 5) {
-                count_gorilla = 0;
-
-                pthread_mutex_lock(&lock_rope);
-                    printf("Gorila passando de A para B \n");
-                    sleep(5);
-                pthread_mutex_unlock(&lock_rope);
-            }
+            pthread_mutex_lock(&lock_rope);
+                printf("Gorila passando de A para B \n");
+                sleep(2);
+            pthread_mutex_unlock(&lock_rope);
             // Procedimentos para quando sair da corda
         pthread_mutex_unlock(&lock_priority);
     }
