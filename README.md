@@ -20,4 +20,5 @@ includes the older concepts as well.
 | Priority Mutexes | Monkey Problem | 3 - Problema dos Macacos |
 | Condition Variables | Producers and Consumers | 4 - Problema dos Produtores e Consumidores |
 | Conditions Variables | The Canibals | 5 - Problemas dos Canibais|
+| Semaphores | Producers and Consumers | 6 - Problema dos Produtores e Consumidores|
 
