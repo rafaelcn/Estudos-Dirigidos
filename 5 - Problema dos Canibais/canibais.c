@@ -90,7 +90,7 @@ void * canibal(void* pi) {
             // colocasse a espera (pthread_cond_wait) abaixo da linha 105 o
             // canibal iria sair da região crítica assim que recebesse a ordem
             // para comer.
-            if (food == 0) {
+            while (food == 0) {
                 printf("%d: sem comida, vou acordar o cozinheiro...\n", id);
                 // avisa ao cozinheiro que a condição to_cook é verdadeira e
                 // ele deve iniciar a preparação da comida.
@@ -99,11 +99,11 @@ void * canibal(void* pi) {
                 pthread_cond_wait(&to_eat, &lock);
             }
 
-            if (food > 0) {
-                printf("%d: vou pegar uma porção\n", id);
-                food--;
-            } else {
-                printf("%d: não posso pegar uma porção, não há comida\n", id);
+
+            printf("%d: vou pegar uma porção\n", id);
+            food--;
+
+            if (food == 0) {
                 pthread_cond_signal(&to_cook);
             }
         pthread_mutex_unlock(&lock);
@@ -132,10 +132,11 @@ void *cooker(int m, int n) {
                 sleep(rand() % 3);
             }
             printf("cozinheiro: ok, agora acordando os canibais e indo dormir\n");
+
+            // acordar os canibais
+            pthread_cond_broadcast(&to_eat);
         pthread_mutex_unlock(&lock);
 
-        // acordar os canibais
-        pthread_cond_broadcast(&to_eat);
         // dormir
         sleep(10);
     }
