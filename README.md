@@ -22,4 +22,7 @@ includes the older concepts as well.
 | Conditions Variables | The Canibals | 5 - Problemas dos Canibais |
 | Semaphores | Producers and Consumers | 6 - Problema dos Produtores e Consumidores |
 | Semaphores | The barber | 7 - Barbeiro Dorminhoco |
+| Semaphores | Dining Philosophers | 8 - Jantar dos Filósofos |
+| Semaphores | Pigeon Problem | 9 -  Problema do Pombo Correio |
+| Condition Variables | Pigeon Problem | 10 - Problema do Pombo Correio |
 
