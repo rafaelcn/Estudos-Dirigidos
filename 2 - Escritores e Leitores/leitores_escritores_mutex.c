@@ -67,22 +67,22 @@ void * reader(void *arg) {
         pthread_mutex_unlock(&lock_priority);
 
         pthread_mutex_lock(&lock_nl);
-            num_leitores++;
-            if (num_leitores == 1) {
-                pthread_mutex_lock(&lock_bd);
-            }
+		num_leitores++;
+		if (num_leitores == 1) {
+			pthread_mutex_lock(&lock_bd);
+		}
         pthread_mutex_unlock(&lock_nl);
 
         // acesso à base de dados
         read_data_base(i);
 
         pthread_mutex_lock(&lock_nl);
-            num_leituras++;
-            num_leitores--;
+		num_leituras++;
+		num_leitores--;
 
-            if (num_leitores == 0) {
-                pthread_mutex_unlock(&lock_bd);
-            }
+		if (num_leitores == 0) {
+			pthread_mutex_unlock(&lock_bd);
+		}
         pthread_mutex_unlock(&lock_nl);
 
         // região não crítica
